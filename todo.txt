@@ -20,3 +20,5 @@ Technical Considerations:
     Implement a caching mechanism to improve the performance of URL redirections.
     Use a URL routing library (e.g., Gorilla Mux) to handle HTTP requests and route them to the appropriate handlers.
     Implement proper error handling and validation to ensure the service is robust and secure.
+
+https://blog.logrocket.com/routing-go-gorilla-mux/
