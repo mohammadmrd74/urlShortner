@@ -14,7 +14,7 @@ type User struct {
 
 func InsertController(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
-	writer.WriteHeader(http.StatusOK)
+	writer.WriteHeader(http.StatusCreated)
 	var userRequest User
 
 	err := json.NewDecoder(request.Body).Decode(&userRequest)
@@ -22,5 +22,7 @@ func InsertController(writer http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		log.Fatalln("There is an error", err)
 	}
+
+	// json.NewEncoder(writer).Encode(userRequest)
 
 }
