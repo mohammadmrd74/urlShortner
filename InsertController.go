@@ -23,6 +23,6 @@ func InsertController(writer http.ResponseWriter, request *http.Request) {
 		log.Fatalln("There is an error", err)
 	}
 
-	// json.NewEncoder(writer).Encode(userRequest)
+	json.NewEncoder(writer).Encode(userRequest)
 
 }
