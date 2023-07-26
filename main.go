@@ -9,12 +9,13 @@ import (
 )
 
 func main() {
+
 	router := mux.NewRouter()
 	router.HandleFunc("/api/user", insert.InsertController).Methods("POST")
 
-	err := http.ListenAndServe(":8080", router)
+	err1 := http.ListenAndServe(":8080", router)
 
-	if err != nil {
-		log.Fatalln("There's an error with the server,", err)
+	if err1 != nil {
+		log.Fatalln("There's an error with the server,", err1)
 	}
 }
