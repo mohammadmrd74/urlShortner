@@ -14,6 +14,11 @@ type User struct {
 	Email string `json:"email"`
 }
 
+type Response struct {
+	Status     bool   `json:"status"`
+	ErrMessage string `json:"errorMessage"`
+}
+
 func InsertController(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
 
@@ -31,8 +36,10 @@ func InsertController(writer http.ResponseWriter, request *http.Request) {
 	_, errDb := dbConn.Exec(query, userRequest.Name, userRequest.Email)
 
 	if errDb != nil {
-		fmt.Println(errDb)
-		panic(errDb)
+		writer.WriteHeader(http.StatusBadRequest)
+		res := Response{false, "Duplicate"}
+		json.NewEncoder(writer).Encode(&res)
+		// json.NewEncoder(writer).Encode(map[string]any{"Status": false, "Message": "Duplicate user"}) //this could be done also
 	}
 
 	writer.WriteHeader(http.StatusCreated)
